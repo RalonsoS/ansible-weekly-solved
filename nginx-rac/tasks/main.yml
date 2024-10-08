@@ -1,0 +1,19 @@
+---
+- name: Incluir variables para producción
+  include_vars: vars/prod.yml
+  when: inventory_hostname in groups['prod']
+
+- name: Install nginx
+  include_tasks: install.yml
+  tags: install
+
+- name: Catch data from template 
+  include_tasks: json.yml
+  tags: overwrite_index
+
+- name: Update index
+  include_tasks: config.yml
+  tags: overwrite_index
+
+
+

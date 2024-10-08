@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to {{ node_environment }} Environment</title>
+</head>
+<body>
+    <h1>Welcome to {{ node_environment }} Environment</h1>
+
+    {% if node_environment == 'prod' %}
+    <p>Secret: {{ vault_prod_secret }}</p>
+    {% endif %}
+
+    <h2>Application Information</h2>
+    <p><strong>Name:</strong> {{ app_name }}</p>
+    <p><strong>Version:</strong> {{ app_version }}</p>
+    <p><strong>Description:</strong> {{ app_description }}</p>
+</body>
+</html>

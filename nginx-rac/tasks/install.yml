@@ -1,0 +1,11 @@
+- name: Instalar Nginx
+  apt:
+    name: nginx
+    state: present
+  tags: install
+
+- name: Iniciar Nginx
+  service:
+    name: nginx
+    state: started
+  tags: install

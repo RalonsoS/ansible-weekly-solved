@@ -1,0 +1,11 @@
+- name: Crear directorio para el sitio web
+  file:
+    path: /var/www/html
+    state: directory
+  tags: install
+
+- name: Copiar plantilla de index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+  tags: overwrite_index

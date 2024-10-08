@@ -1,0 +1,17 @@
+all:
+  children:
+    dev:
+      hosts:
+        dev-server:
+          ansible_host: 192.168.1.188
+          ansible_user: dev
+          ansible_ssh_password: changeme
+          ansible_become_pass: changeme
+    prod:
+      hosts:
+        prod-server:
+          ansible_host: 192.168.1.187
+          ansible_user: prod
+          ansible_ssh_password: changeme
+          ansible_become_pass: changeme
+

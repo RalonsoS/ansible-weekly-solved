@@ -1,0 +1,29 @@
+- name: Copy file
+  copy:
+    src: test.json
+    dest: /tmp/test.json
+  tags: overwrite_index
+
+- name: Read JSON file
+  slurp:
+    src: /tmp/test.json
+  register: "json_data"
+  tags: overwrite_index
+
+- name: Decode JSON content
+  set_fact:
+    app_info: "{{ json_data['content'] | b64decode | from_json }}"
+  tags: overwrite_index
+
+- name: Extract application details
+  set_fact:
+    app_name: "{{ item.name }}"
+    app_version: "{{ item.version }}"
+    app_description: "{{ item.description }}"
+  loop: "{{ app_info.applications }}"
+  tags: overwrite_index
+
+- name: Print application information
+  debug:
+    msg: "Name: {{ app_name }}, Version: {{ app_version }}, Description: {{ app_description }}"
+  tags: overwrite_index
